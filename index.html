@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function timeout(duration ) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(resolve, duration);
+            });
+        }
+        
+        var p = timeout(1000).then(function() {
+            console.log('after 1000');
+           return timeout(2000);
+        }).then(function() {
+            console.log('after 2000');
+            throw new Error("hmm");
+        }).catch(function() {
+            console.log('catch', arguments);
+        });
+
+
+    </script>
+</head>
+<body>
+some content
+</body>
+</html>
